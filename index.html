@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="腕记 WristNote 测试版支持说明。使用手表录制短语音，通过你自行配置的 HTTPS 服务转成文字。">
+  <meta name="color-scheme" content="light">
+  <title>腕记 WristNote · 支持与使用说明</title>
+  <style>
+    :root{--ink:#19354b;--muted:#52697b;--link:#155ba0;--paper:#fff;--wash:#edf5fb;--line:#cbdce9;--accent:#1977bc}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Avenir Next","PingFang SC","Microsoft YaHei",sans-serif;font-size:17px;line-height:1.8}a{color:var(--link);text-underline-offset:.2em}a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.skip{position:absolute;left:1rem;top:-5rem;background:white;padding:.5rem}.skip:focus{top:1rem}header,main,footer{max-width:960px;margin:auto;padding:0 28px}header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}.brand{font-weight:750;font-size:20px;text-decoration:none}.brand small{font-weight:500;font-size:15px;margin-left:.5em}nav{display:flex;gap:22px;flex-wrap:wrap;font-size:15px}main{padding-top:52px;padding-bottom:56px}h1{font-size:clamp(30px,5vw,46px);line-height:1.25;letter-spacing:-.025em;max-width:20em;margin:0 0 22px}h2{font-size:24px;line-height:1.4;margin:36px 0 12px}h3{font-size:19px;margin:24px 0 8px}p,ul,ol{max-width:43em}p{margin:12px 0}li{margin:8px 0}ul,ol{padding-left:1.5em}.lead{font-size:20px;max-width:35em}.notice{background:var(--wash);border-left:4px solid var(--accent);padding:18px 22px;margin:28px 0 36px;max-width:47em}.notice p{margin:0}.meta{color:var(--muted);font-size:14px}.contents{display:flex;gap:10px 24px;flex-wrap:wrap;margin:22px 0 34px;font-size:15px}.language{border-top:1px solid var(--line);padding-top:30px;margin-top:48px}code{font-size:.9em;overflow-wrap:anywhere}.contact{overflow-wrap:anywhere}footer{border-top:1px solid var(--line);padding-top:24px;padding-bottom:32px;color:var(--muted);font-size:14px}footer p{margin:6px 0}@media(max-width:600px){header,main,footer{padding-left:20px;padding-right:20px}header{align-items:flex-start;flex-direction:column;gap:10px}main{padding-top:32px}body{font-size:16px}.lead{font-size:18px}.notice{padding:16px}h2{font-size:22px}}@media print{header nav,.contents,.skip{display:none}main{padding-top:24px}a{color:inherit}footer{font-size:12px}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文 / Skip to content</a>
+<header>
+  <a class="brand" href="index.html">腕记 <small>WristNote</small></a>
+  <nav aria-label="导航"><a href="privacy.html">隐私说明</a><a href="#english" lang="en">English</a><a href="mailto:leo528@foxmail.com">联系支持</a></nav>
+</header>
+<main id="main">
+  <h1>在手表上说一句，<br>留下一条文字笔记。</h1>
+  <p class="lead">腕记将你主动录制的短语音发送到你配置的服务，识别后在手表显示文字。</p>
+  <p class="meta">开发者：WristNote　｜　更新日期：2026-11-05</p>
+  <div class="notice"><p><strong>当前为仅限发布账号本人测试的版本。</strong>应用不提供默认转写服务。必须先自行准备兼容的 HTTPS 服务和设备访问令牌，完成设置后才能转写；仅安装应用无法直接使用转写功能。</p></div>
+  <nav class="contents" aria-label="本页目录"><a href="#setup">开始使用</a><a href="#controls">录音与笔记</a><a href="#troubleshooting">遇到问题</a><a href="#contact">联系支持</a></nav>
+
+  <section id="setup">
+    <h2>开始使用</h2>
+    <ol>
+      <li><strong>准备自己的服务。</strong>服务应提供有效的公网 HTTPS 地址、设备鉴权、录音上传和转写结果接口。参考服务默认使用部署环境中的 faster-whisper；目前没有由开发者运营的默认生产服务。</li>
+      <li><strong>填写应用设置。</strong>在手机 Connect IQ 中找到腕记的“设置”，填写 HTTPS 服务器地址和本设备访问令牌。令牌用于访问你的服务，不是 Garmin 账号密码，也不是第三方模型服务的主密钥。</li>
+      <li><strong>保持连接。</strong>手表需要可用的网络通信路径；使用手机连接时，请保持 Garmin Connect 正常连接。录音与等待文字期间保持腕记在前台。</li>
+      <li><strong>先用不敏感的一句话验证。</strong>确认服务能够访问、识别结果正常，再用于日常笔记。录音会发往你填写的地址，请先确认运营者及其数据处理方式。</li>
+    </ol>
+    <p>当前目标设备为 Forerunner 570（47 mm）。手表固件必须支持应用使用的录音能力；硬件型号兼容不等于所有地区、所有固件版本均已完成实机验证。</p>
+  </section>
+
+  <section id="controls">
+    <h2>录音与笔记</h2>
+    <ul>
+      <li><strong>START：</strong>开始录音；再次按下会停止并自动发送录音进行转写。</li>
+      <li><strong>录音上限：</strong>每次最多 30 秒或 256 KiB，先到达的限制生效。WAV 格式可能更早结束。</li>
+      <li><strong>BACK：</strong>在本次处理中取消并丢弃手表会话中的录音。已经到达服务器的数据不会因此被撤回。</li>
+      <li><strong>历史笔记：</strong>手表保存最近 8 条文字，每条最多 1,200 个字符。较长结果在手表上会截短，较早的笔记会被替换。</li>
+      <li><strong>删除：</strong>在笔记详情菜单中删除单条，或使用“清空本地历史”。这些操作只删除手表本地文字，不删除服务器内容。</li>
+    </ul>
+    <p>应用仅在前台录音，不提供后台持续录音。退出应用会丢弃未完成的会话录音。转写结果可能出错，重要内容请核对后再使用。</p>
+  </section>
+
+  <section id="troubleshooting">
+    <h2>遇到问题</h2>
+    <h3>提示设置未完成或服务不可用</h3>
+    <p>检查 HTTPS 地址是否正确、证书是否有效、设备令牌是否与服务器一致，以及服务器和识别进程是否运行。应用不会自动替你创建云服务。</p>
+    <h3>转写一直没有结果</h3>
+    <p>检查手机与手表连接，并保持应用前台运行。弱网、服务器性能和模型加载都可能影响耗时。按照手表上的提示重试；若提示需要重新录音，原请求已经进入失败或不可恢复状态。</p>
+    <h3>提示固件不支持录音</h3>
+    <p>核对设备和固件是否支持所需录音接口。应用权限或麦克风不可用时，不会生成可用录音。请附上具体提示联系支持。</p>
+    <h3>想停止使用或删除数据</h3>
+    <p>停止录音并退出应用，清空本地历史，移除应用设置或卸载应用；需要彻底撤销服务器访问时，请让服务运营者轮换或撤销设备令牌。服务器文字须由运营者通过删除接口处理，或按其保留规则到期清理。卸载手表应用不会删除服务器副本、日志或备份。</p>
+    <p>详细数据去向和默认保留规则见<a href="privacy.html">隐私说明</a>。</p>
+  </section>
+
+  <section id="contact">
+    <h2>联系支持</h2>
+    <p class="contact">WristNote：<a href="mailto:leo528@foxmail.com">leo528@foxmail.com</a></p>
+    <p>来信可说明设备型号、固件版本、腕记版本、错误提示及大致发生时间。请不要发送账号密码、设备令牌、第三方 API 密钥或包含他人隐私的录音。自行部署服务中的数据删除请求，请同时联系实际服务运营者。</p>
+  </section>
+
+  <section id="english" class="language" lang="en">
+    <h2>WristNote support</h2>
+    <p>WristNote turns short recordings you initiate on your watch into text using a service you configure.</p>
+    <div class="notice"><p><strong>This beta is limited to testing by the publishing account owner.</strong> It includes no default transcription service. You must supply a compatible HTTPS endpoint and device access token. Installing the app alone does not enable transcription.</p></div>
+    <h3>Setup and use</h3>
+    <ol>
+      <li>Prepare your own compatible HTTPS service. The reference implementation uses faster-whisper in your deployment environment. No default production service is operated by the developer.</li>
+      <li>Enter the service URL and device token in WristNote’s Connect IQ settings. Do not enter your Garmin password or a third-party provider’s master API key.</li>
+      <li>Keep a working connection and keep WristNote in the foreground. Press START to record; press START again to stop and automatically upload for transcription.</li>
+      <li>Verify the setup with a short, non-sensitive phrase first. The app sends audio to the address you entered.</li>
+    </ol>
+    <p>The current target is Forerunner 570 (47 mm), with firmware supporting the required audio capture capability. Model compatibility does not establish validation on every regional firmware.</p>
+    <h3>Limits and deletion</h3>
+    <p>Recordings stop at 30 seconds or 256 KiB, whichever comes first. WAV recordings may stop earlier. Recording runs only in the foreground. BACK cancels the watch session; it cannot retract data already received by a server.</p>
+    <p>The watch keeps the latest eight notes, up to 1,200 characters each. Delete a note from its detail menu or clear local history. These actions affect only the watch. Server deletion, device-token revocation, logs and backups are controlled by the service operator. Uninstalling the app does not delete server copies.</p>
+    <h3>Troubleshooting and contact</h3>
+    <p>Check the HTTPS certificate, endpoint, token, network connection and server availability. Follow the watch’s retry or re-record message. Review important transcripts because recognition can make mistakes.</p>
+    <p class="contact">Developer: WristNote. Support: <a href="mailto:leo528@foxmail.com">leo528@foxmail.com</a>. Include the device, firmware, app version and error message. Do not send passwords, tokens, API keys or private recordings. Read the <a href="privacy.html#english">privacy notice</a> for data handling details.</p>
+  </section>
+</main>
+<footer><p>WristNote · 2026-11-05</p><p><a href="privacy.html">隐私说明 / Privacy</a>　<a href="mailto:leo528@foxmail.com">leo528@foxmail.com</a></p></footer>
+</body>
+</html>
