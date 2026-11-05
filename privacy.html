@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="腕记 WristNote 的录音、转写、保留和删除说明。适用于当前个人测试版及参考服务实现。">
+  <meta name="color-scheme" content="light">
+  <title>腕记 WristNote · 隐私说明</title>
+  <style>
+    :root{--ink:#19354b;--muted:#52697b;--link:#155ba0;--paper:#fff;--wash:#edf5fb;--line:#cbdce9;--accent:#1977bc}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Avenir Next","PingFang SC","Microsoft YaHei",sans-serif;font-size:17px;line-height:1.8}a{color:var(--link);text-underline-offset:.2em}a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.skip{position:absolute;left:1rem;top:-5rem;background:white;padding:.5rem}.skip:focus{top:1rem}header,main,footer{max-width:960px;margin:auto;padding:0 28px}header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}.brand{font-weight:750;font-size:20px;text-decoration:none}.brand small{font-weight:500;font-size:15px;margin-left:.5em}nav{display:flex;gap:22px;flex-wrap:wrap;font-size:15px}main{padding-top:52px;padding-bottom:56px}h1{font-size:clamp(30px,5vw,46px);line-height:1.25;letter-spacing:-.025em;margin:0 0 22px}h2{font-size:24px;line-height:1.4;margin:36px 0 12px}h3{font-size:19px;margin:24px 0 8px}p,ul,ol{max-width:43em}p{margin:12px 0}li{margin:8px 0}ul,ol{padding-left:1.5em}.lead{font-size:20px;max-width:35em}.notice{background:var(--wash);border-left:4px solid var(--accent);padding:18px 22px;margin:28px 0 36px;max-width:47em}.notice p{margin:0}.meta{color:var(--muted);font-size:14px}.contents{display:flex;gap:10px 24px;flex-wrap:wrap;margin:22px 0 34px;font-size:15px}.language{border-top:1px solid var(--line);padding-top:30px;margin-top:48px}.contact{overflow-wrap:anywhere}footer{border-top:1px solid var(--line);padding-top:24px;padding-bottom:32px;color:var(--muted);font-size:14px}footer p{margin:6px 0}@media(max-width:600px){header,main,footer{padding-left:20px;padding-right:20px}header{align-items:flex-start;flex-direction:column;gap:10px}main{padding-top:32px}body{font-size:16px}.lead{font-size:18px}.notice{padding:16px}h2{font-size:22px}}@media print{header nav,.contents,.skip{display:none}main{padding-top:24px}a{color:inherit}footer{font-size:12px}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文 / Skip to content</a>
+<header>
+  <a class="brand" href="index.html">腕记 <small>WristNote</small></a>
+  <nav aria-label="导航"><a href="index.html">支持与使用</a><a href="#english" lang="en">English</a><a href="mailto:leo528@foxmail.com">联系支持</a></nav>
+</header>
+<main id="main">
+  <h1>隐私说明</h1>
+  <p class="lead">你主动录音，选择接收音频的服务，并控制手表上的笔记。</p>
+  <p class="meta">开发者：WristNote　｜　生效日期：2026-11-05</p>
+  <div class="notice"><p>本说明适用于仅限发布账号本人测试的腕记版本及其参考服务实现。腕记没有默认转写服务；必须自行配置 HTTPS 服务。实际服务器的运营者、处理地区、附加日志和备份规则取决于你的部署选择。</p></div>
+  <nav class="contents" aria-label="本页目录"><a href="#collection">处理哪些数据</a><a href="#sharing">数据发往哪里</a><a href="#retention">保存多久</a><a href="#control">停止与删除</a><a href="#contact">联系</a></nav>
+
+  <section id="collection">
+    <h2>处理哪些数据</h2>
+    <p>你在应用前台按 START 开始录音后，腕记使用手表麦克风采集当前语音。停止录音后，音频会自动发送给你配置的服务，供识别并返回文字。应用不提供后台持续录音。</p>
+    <ul>
+      <li><strong>音频和文字：</strong>用于完成你发起的语音转写和显示笔记。</li>
+      <li><strong>请求信息：</strong>录音编号、音频格式、时间和处理状态用于完成请求；参考服务器还保存音频文件摘要及设备令牌摘要，用于防止重复处理和限制访问次数。</li>
+      <li><strong>连接设置：</strong>HTTPS 服务地址和设备访问令牌通过 Garmin 应用设置配置和保存。令牌用于访问你选择的服务。</li>
+    </ul>
+    <p>当前应用只声明麦克风输入和网络通信权限，不请求位置、健康数据或联系人权限。它不读取 Garmin 健康记录或系统中已有的录音库。</p>
+  </section>
+
+  <section id="sharing">
+    <h2>数据发往哪里</h2>
+    <p>音频经可用的手表/手机通信路径发送到你填写的 HTTPS 地址。该服务的运营者及其识别服务提供方会接触完成转写所必需的数据。使用 Garmin Connect 时，其自身的数据处理适用 Garmin 的政策。</p>
+    <p>参考服务默认在同一部署环境中使用 faster-whisper 识别，不需要第三方转写 API 密钥，目前也没有由 WristNote 运营的默认生产服务。若部署者启用第三方识别接口，音频会被发送给其选择的提供方；处理地区、留存、日志及模型训练用途应以实际服务的说明和设置为准。</p>
+    <p>自建或私有服务并不等于离线处理，也不保证数据只在某一国家或地区保存。请先了解所选服务，再发送敏感内容。第三方识别服务的主密钥应保存在服务器，不应填入手表设置。</p>
+  </section>
+
+  <section id="retention">
+    <h2>保存多久</h2>
+    <h3>在手表上</h3>
+    <p>本次音频保存在应用运行内存中；退出应用会丢弃未完成的会话录音。手表本地保存最近 8 条转写文字，每条最多 1,200 个字符，以及笔记编号和创建时间。新笔记会替换超出数量限制的旧笔记，长文字会截短。</p>
+    <h3>在参考服务器中</h3>
+    <p>默认代码在内存中处理音频，不主动将录音写入数据库或音频文件。处理结束会清零应用持有的字节缓冲区并释放引用；运行库和解码器可能产生短暂副本，不能保证安全擦除全部物理内存。实际平台是否产生额外文件、日志或备份，须由部署者确认。</p>
+    <p>转写文字和请求记录的默认 API 可见期为 24 小时。到期后无法通过接口读取；运行中的服务会在已认证请求时和每小时清理过期活动记录。主动删除会使文字不可经接口读取，并保留限额与防重复处理所需的元数据直到到期。</p>
+    <p><strong>这些操作属于逻辑删除。</strong>SQLite 空闲页、WAL 日志、磁盘快照或备份中可能残留数据，不保证立即物理擦除。实际日志和备份的保留、访问与清理由服务运营者决定。</p>
+    <p>参考代码不主动记录音频、转写文字或认证头。此说明不代表第三方服务、网络平台或运维配置具有相同的记录规则。</p>
+  </section>
+
+  <section id="control">
+    <h2>停止使用与删除</h2>
+    <ul>
+      <li><strong>停止本次录音：</strong>在处理界面按 BACK 取消，或退出应用。取消本地处理不能撤回已经到达服务器的数据。</li>
+      <li><strong>删除手表文字：</strong>使用笔记详情中的“删除这条笔记”，或“清空本地历史”。这些操作不会调用服务器删除接口。</li>
+      <li><strong>删除服务器文字：</strong>由实际服务运营者使用已认证的删除接口处理，或按其保留规则到期清理；日志、快照和备份需要分别处理。</li>
+      <li><strong>撤销访问：</strong>移除应用配置，并让服务运营者撤销或轮换设备令牌。也可按设备支持的方式撤销权限或卸载应用。</li>
+    </ul>
+    <p>卸载手表应用不代表服务器中的数据已被删除。若你自行运营服务器，这些服务器管理操作由你控制；若使用他人的服务，请联系该运营者。</p>
+  </section>
+
+  <section>
+    <h2>本说明网站</h2>
+    <p>这两页静态说明没有加入广告、统计 SDK、追踪脚本或录音上传功能。承载网站的平台仍可能处理访问 IP 和服务日志，具体适用其数据处理规则。通过邮件联系支持时，邮件内容及你主动提供的信息会用于处理该请求；请不要发送密码、令牌或敏感录音。</p>
+  </section>
+
+  <section id="contact">
+    <h2>联系与更新</h2>
+    <p class="contact">开发者显示名：WristNote。隐私与支持联系：<a href="mailto:leo528@foxmail.com">leo528@foxmail.com</a>。</p>
+    <p>服务器数据请求也应发给你所选服务的实际运营者；WristNote 开发者不一定能访问或删除自行部署环境中的数据。若版本的数据处理方式变化，本页会更新日期与相应说明。</p>
+  </section>
+
+  <section id="english" class="language" lang="en">
+    <h2>Privacy notice</h2>
+    <p class="meta">Developer: WristNote. Effective date: November 5, 2026.</p>
+    <p>This notice covers the beta limited to testing by the publishing account owner and its reference server implementation. WristNote provides no default transcription service. You must configure your own HTTPS endpoint. The operator, processing location, additional logs and backups depend on the service you choose.</p>
+    <h3>Data and permissions</h3>
+    <p>Pressing START in the foreground begins microphone capture. Stopping the recording automatically uploads it to your configured endpoint for transcription. The app does not provide continuous background recording.</p>
+    <p>It processes audio, transcripts, recording IDs, format, timestamps and status. The reference server also stores audio-file and device-token hashes for duplicate protection and quotas. The endpoint URL and device access token are configured and saved through Garmin app settings.</p>
+    <p>The current app declares only audio-input and communication permissions. It does not request location, health-data or contact permissions, read Garmin health records, or access an existing system recording library.</p>
+    <h3>Recipients</h3>
+    <p>Audio travels through the available watch/phone connection to the HTTPS address you enter. Its operator and chosen recognition provider process the data needed for transcription. Garmin Connect’s own processing is governed by Garmin’s policies.</p>
+    <p>The reference server runs faster-whisper in the same deployment environment by default. There is no developer-operated default production service. If an operator enables a third-party recognizer, audio is sent to that provider. Its processing location, retention, logs and training use depend on the provider and deployment settings. A private or self-hosted endpoint does not imply offline or country-restricted processing. Provider master keys belong on the server, not on the watch.</p>
+    <h3>Retention</h3>
+    <p>The watch keeps current-session audio in application memory and discards unfinished session audio when the app exits. It saves the latest eight text notes, with up to 1,200 characters each, plus note IDs and creation times. Older notes are replaced and longer text is truncated.</p>
+    <p>The reference server processes audio in memory without intentionally saving audio files or database blobs. It clears its owned byte buffer and releases references after processing. Libraries and decoders may create temporary copies; secure erasure of all physical memory is not guaranteed. Hosting, diagnostics and backup behavior require separate operator review.</p>
+    <p>Transcripts and request records are accessible through the reference API for 24 hours. Expired records cannot be retrieved. While running, the server cleans expired active records on authenticated requests and hourly. An explicit deletion removes API access to the text; content-free quota and duplicate-protection metadata remains until expiry.</p>
+    <p><strong>This is logical deletion, not a guarantee of immediate physical erasure.</strong> Data may remain in SQLite free pages, WAL files, snapshots or backups. Their retention and cleanup are controlled by the service operator. The reference code does not intentionally log audio, transcript text or authentication headers; other platform and operator logs may differ.</p>
+    <h3>Control and deletion</h3>
+    <p>Press BACK during processing or exit the app to cancel the watch session. This cannot retract data already received by a server. Delete a local note or clear local history from the app menu; these controls do not delete server content.</p>
+    <p>Ask the actual server operator to use the authenticated deletion endpoint and address logs or backups separately. Remove app settings and have the operator revoke or rotate the device token to withdraw access. You may also revoke supported device permissions or uninstall the app. Uninstallation does not delete server copies. For your own deployment, you control those server-management actions.</p>
+    <h3>This website and contact</h3>
+    <p>These static pages add no advertising, analytics SDK, tracking script or audio-upload feature. The hosting platform may process visitor IP addresses and service logs under its own rules. Information you choose to send by support email is used to handle that request; do not send passwords, tokens or sensitive recordings.</p>
+    <p class="contact">Privacy and support: <a href="mailto:leo528@foxmail.com">leo528@foxmail.com</a>. Developer display name: WristNote. Direct server-data requests to the actual service operator as well; the developer may have no access to a self-hosted deployment. This page’s date and relevant wording will change if the app’s data handling changes.</p>
+  </section>
+</main>
+<footer><p>WristNote · 2026-11-05</p><p><a href="index.html">支持与使用 / Support</a>　<a href="mailto:leo528@foxmail.com">leo528@foxmail.com</a></p></footer>
+</body>
+</html>
