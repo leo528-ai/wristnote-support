@@ -37,8 +37,8 @@
   <section id="sharing">
     <h2>数据发往哪里</h2>
     <p>音频经可用的手表/手机通信路径发送到你填写的 HTTPS 地址。该服务的运营者及其识别服务提供方会接触完成转写所必需的数据。使用 Garmin Connect 时，其自身的数据处理适用 Garmin 的政策。</p>
-    <p>参考服务默认在同一部署环境中使用 faster-whisper 识别，不需要第三方转写 API 密钥，目前也没有由 WristNote 运营的默认生产服务。若部署者启用第三方识别接口，音频会被发送给其选择的提供方；处理地区、留存、日志及模型训练用途应以实际服务的说明和设置为准。</p>
-    <p>自建或私有服务并不等于离线处理，也不保证数据只在某一国家或地区保存。请先了解所选服务，再发送敏感内容。第三方识别服务的主密钥应保存在服务器，不应填入手表设置。</p>
+    <p>参考服务可在部署环境中运行 faster-whisper，也可启用 Groq Whisper。启用 Groq 时，录音和完成转写所需的请求信息会由你配置的服务器发送给 Groq，识别文字再返回服务器和手表。Groq 的 API 密钥只保存在服务器。目前没有由 WristNote 运营的默认生产服务。</p>
+    <p>Groq 的留存、日志及训练规则适用其<a href="https://console.groq.com/docs/your-data">数据说明</a>与账户设置。Groq 说明默认不留存推理输入和输出，但故障排查或滥用调查可能保留最长 30 天，法律要求可能更久。零数据留存需要在 Groq 账户中单独设置，腕记不会自动开启。自建服务不代表离线处理或限定在某一国家。发送录音前请确认所选服务和设置。</p>
   </section>
 
   <section id="retention">
@@ -84,7 +84,8 @@
     <p>The current app declares only audio-input and communication permissions. It does not request location, health-data or contact permissions, read Garmin health records, or access an existing system recording library.</p>
     <h3>Recipients</h3>
     <p>Audio travels through the available watch/phone connection to the HTTPS address you enter. Its operator and chosen recognition provider process the data needed for transcription. Garmin Connect’s own processing is governed by Garmin’s policies.</p>
-    <p>The reference server runs faster-whisper in the same deployment environment by default. There is no developer-operated default production service. If an operator enables a third-party recognizer, audio is sent to that provider. Its processing location, retention, logs and training use depend on the provider and deployment settings. A private or self-hosted endpoint does not imply offline or country-restricted processing. Provider master keys belong on the server, not on the watch.</p>
+    <p>The reference server can run faster-whisper within the deployment environment or use Groq Whisper. When Groq is enabled, your configured server forwards audio and the request information needed for transcription to Groq, then returns the text to the watch. The Groq API key stays on the server. There is no developer-operated default production service.</p>
+    <p>Groq processing follows its <a href="https://console.groq.com/docs/your-data">data notice</a> and account settings. Groq states that inference inputs and outputs are not retained by default, with possible retention for reliability or abuse investigations for up to 30 days, or longer when required by law. Zero Data Retention must be configured separately in the Groq account; WristNote does not enable it automatically. Self-hosting the proxy does not mean offline or country-restricted processing. Review the chosen provider and settings before recording.</p>
     <h3>Retention</h3>
     <p>The watch keeps current-session audio in application memory and discards unfinished session audio when the app exits. It saves the latest eight text notes, with up to 1,200 characters each, plus note IDs and creation times. Older notes are replaced and longer text is truncated.</p>
     <p>The reference server processes audio in memory without intentionally saving audio files or database blobs. It clears its owned byte buffer and releases references after processing. Libraries and decoders may create temporary copies; secure erasure of all physical memory is not guaranteed. Hosting, diagnostics and backup behavior require separate operator review.</p>

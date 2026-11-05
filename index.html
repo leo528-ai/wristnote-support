@@ -26,7 +26,7 @@
   <section id="setup">
     <h2>开始使用</h2>
     <ol>
-      <li><strong>准备自己的服务。</strong>服务应提供有效的公网 HTTPS 地址、设备鉴权、录音上传和转写结果接口。参考服务默认使用部署环境中的 faster-whisper；目前没有由开发者运营的默认生产服务。</li>
+      <li><strong>准备自己的服务。</strong>服务应提供有效的公网 HTTPS 地址、设备鉴权、录音上传和转写结果接口。参考服务可使用部署环境中的 faster-whisper，或由服务器调用 Groq Whisper。Groq 方案需要服务端 API 密钥，无需在服务器运行识别模型；目前没有由开发者运营的默认生产服务。</li>
       <li><strong>填写应用设置。</strong>在手机 Connect IQ 中找到腕记的“设置”，填写 HTTPS 服务器地址和本设备访问令牌。令牌用于访问你的服务，不是 Garmin 账号密码，也不是第三方模型服务的主密钥。</li>
       <li><strong>保持连接。</strong>手表需要可用的网络通信路径；使用手机连接时，请保持 Garmin Connect 正常连接。录音与等待文字期间保持腕记在前台。</li>
       <li><strong>先用不敏感的一句话验证。</strong>确认服务能够访问、识别结果正常，再用于日常笔记。录音会发往你填写的地址，请先确认运营者及其数据处理方式。</li>
@@ -71,7 +71,7 @@
     <div class="notice"><p><strong>This beta is limited to testing by the publishing account owner.</strong> It includes no default transcription service. You must supply a compatible HTTPS endpoint and device access token. Installing the app alone does not enable transcription.</p></div>
     <h3>Setup and use</h3>
     <ol>
-      <li>Prepare your own compatible HTTPS service. The reference implementation uses faster-whisper in your deployment environment. No default production service is operated by the developer.</li>
+      <li>Prepare your own compatible HTTPS service. The reference implementation supports faster-whisper in your deployment environment or server-side calls to Groq Whisper. Groq requires a server-side API key but no locally running recognition model. No default production service is operated by the developer.</li>
       <li>Enter the service URL and device token in WristNote’s Connect IQ settings. Do not enter your Garmin password or a third-party provider’s master API key.</li>
       <li>Keep a working connection and keep WristNote in the foreground. Press START to record; press START again to stop and automatically upload for transcription.</li>
       <li>Verify the setup with a short, non-sensitive phrase first. The app sends audio to the address you entered.</li>
